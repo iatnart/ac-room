@@ -1,0 +1,51 @@
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      blockMeshDict;
+}
+
+// Exported by SnappyHexMesh GUI add-on for Blender v1.0
+// Source file: E:\GoogleDrive\05-OpenFOAM\02.Project\01-SGF_LA\01. Blender-Files\230619-FillingRoomModel.blend
+// Export date: 2023-06-23 10:14:33.084909
+
+convertToMeters 1;
+
+vertices
+(
+    ( -8.4 -16.2 -3.6 )
+    ( 8.4 -16.2 -3.6 )
+    ( 8.4 16.2 -3.6 )
+    ( -8.4 16.2 -3.6 )
+    ( -8.4 -16.2 5.4 )
+    ( 8.4 -16.2 5.4 ) 
+    ( 8.4 16.2 5.4 ) 
+    ( -8.4 16.2 5.4 ) 
+);
+
+blocks
+(
+    hex (0 1 2 3 4 5 6 7) (28 54 15) simpleGrading (1 1 1)
+);
+
+edges
+(
+);
+
+boundary
+(
+    world
+    {
+        type patch;
+        faces
+        (
+            (3 7 6 2)
+            (0 4 7 3)
+            (2 6 5 1)
+            (1 5 4 0)
+            (0 3 2 1)
+            (4 5 6 7)
+        );
+    }
+);

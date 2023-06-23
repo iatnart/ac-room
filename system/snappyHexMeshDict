@@ -1,0 +1,253 @@
+FoamFile
+{
+    version         2;
+    format          ascii;
+    class           dictionary;
+    object          snappyHexMeshDict;
+}
+
+// Exported by SnappyHexMesh GUI add-on for Blender v1.0
+// Source file: E:\GoogleDrive\05-OpenFOAM\02.Project\01-SGF_LA\01. Blender-Files\230619-FillingRoomModel.blend
+// Export date: 2023-06-23 10:14:33.084909
+
+castellatedMesh true;
+snap            true;
+addLayers       true;
+
+geometry
+{
+    inlet1
+    {
+        type triSurfaceMesh;
+        file "inlet1.stl";
+        // Min Bounds = [ 7.86340e+00 -1.41747e+01  3.67374e+00]
+        // Max Bounds = [ 7.86340e+00  1.55228e+01  4.20267e+00]
+        // Area = 2.78013e+00
+    }
+    inlet2
+    {
+        type triSurfaceMesh;
+        file "inlet2.stl";
+        // Min Bounds = [-7.93660e+00 -1.52260e+01  3.67374e+00]
+        // Max Bounds = [-7.93660e+00  1.55228e+01  4.20267e+00]
+        // Area = 2.78013e+00
+    }
+    Machine_heat
+    {
+        type triSurfaceMesh;
+        file "Machine_heat.stl";
+        // Min Bounds = [ 1.74889e+00  6.59514e+00 -5.62251e-03]
+        // Max Bounds = [ 3.54889e+00  1.19591e+01  2.47207e+00]
+        // Area = 3.93612e+01
+    }
+    Machine_wall
+    {
+        type triSurfaceMesh;
+        file "Machine_wall.stl";
+        // Min Bounds = [-7.12964e+00 -1.50707e+01 -3.13617e+00]
+        // Max Bounds = [ 7.26154e+00  1.51624e+01  6.21151e-01]
+        // Area = 5.83601e+02
+    }
+    outlet1
+    {
+        type triSurfaceMesh;
+        file "outlet1.stl";
+        // Min Bounds = [ 7.86340e+00 -1.36491e+01 -2.87171e+00]
+        // Max Bounds = [ 7.86340e+00  1.52600e+01 -2.27667e+00]
+        // Area = 2.34574e+00
+    }
+    outlet2
+    {
+        type triSurfaceMesh;
+        file "outlet2.stl";
+        // Min Bounds = [-7.93660e+00 -1.39119e+01 -2.87171e+00]
+        // Max Bounds = [-7.93660e+00  1.52600e+01 -2.27667e+00]
+        // Area = 2.34574e+00
+    }
+    Walls
+    {
+        type triSurfaceMesh;
+        file "Walls.stl";
+        // Min Bounds = [-7.93660e+00 -1.57516e+01 -3.13617e+00]
+        // Max Bounds = [ 7.86340e+00  1.60484e+01  4.86383e+00]
+        // Area = 1.73971e+03
+    }
+}
+
+castellatedMeshControls
+{
+    maxLocalCells   10000000;
+    maxGlobalCells  10000000;
+    minRefinementCells 10;
+    maxLoadUnbalance 0.1;
+    nCellsBetweenLevels 3;
+    locationInMesh (0 0 0);
+    allowFreeStandingZoneFaces true;
+    resolveFeatureAngle 30;
+    features
+    (
+        {
+            file "inlet1.eMesh";
+            level 0;
+        }
+        {
+            file "inlet2.eMesh";
+            level 0;
+        }
+        {
+            file "Machine_heat.eMesh";
+            level 0;
+        }
+        {
+            file "Machine_wall.eMesh";
+            level 0;
+        }
+        {
+            file "outlet1.eMesh";
+            level 0;
+        }
+        {
+            file "outlet2.eMesh";
+            level 0;
+        }
+        {
+            file "Walls.eMesh";
+            level 0;
+        }
+
+    );
+    refinementSurfaces
+    {
+        inlet1
+        {
+            level (2 3);
+            patchInfo { type patch; }
+        }
+        inlet2
+        {
+            level (2 3);
+            patchInfo { type patch; }
+        }
+        Machine_heat
+        {
+            level (1 2);
+            patchInfo { type wall; }
+        }
+        Machine_wall
+        {
+            level (0 1);
+            patchInfo { type wall; }
+        }
+        outlet1
+        {
+            level (0 0);
+            patchInfo { type patch; }
+        }
+        outlet2
+        {
+            level (2 3);
+            patchInfo { type patch; }
+        }
+        Walls
+        {
+            level (0 1);
+            patchInfo { type wall; }
+        }
+
+    }
+    refinementRegions
+    {
+        Machine_wall
+        {
+            mode inside;
+            levels ((3 3));
+        }
+
+    }
+}
+
+snapControls
+{
+    nSmoothPatch    3;
+    tolerance       2;
+    nSolveIter      300;
+    nRelaxIter      10;
+    nFeatureSnapIter 10;
+    implicitFeatureSnap false;
+    explicitFeatureSnap true;
+    multiRegionFeatureSnap true;
+}
+
+addLayersControls
+{
+    relativeSizes   true;
+    expansionRatio  1;
+    finalLayerThickness 0.3;
+    minThickness    0.1;
+    nGrow           0;
+    featureAngle    60;
+    slipFeatureAngle 30;
+    nRelaxIter      3;
+    nSmoothSurfaceNormals 1;
+    nSmoothNormals  3;
+    nSmoothThickness 10;
+    maxFaceThicknessRatio 0.5;
+    maxThicknessToMedialRatio 0.3;
+    minMedianAxisAngle 90;
+    nBufferCellsNoExtrude 0;
+    nLayerIter      50;
+    layers
+    {
+        inlet1
+        {
+             nSurfaceLayers 3;
+        }
+        inlet2
+        {
+             nSurfaceLayers 0;
+        }
+        Machine_heat
+        {
+             nSurfaceLayers 3;
+        }
+        Machine_wall
+        {
+             nSurfaceLayers 0;
+        }
+        outlet1
+        {
+             nSurfaceLayers 0;
+        }
+        outlet2
+        {
+             nSurfaceLayers 3;
+        }
+        Walls
+        {
+             nSurfaceLayers 0;
+        }
+
+    }
+}
+
+meshQualityControls
+{
+    maxNonOrtho     35;
+    maxBoundarySkewness 20;
+    maxInternalSkewness 4;
+    maxConcave      80;
+    minVol          1e-15;
+    minTetQuality   1e-15;
+    minArea         -1;
+    minTwist        0.02;
+    minDeterminant  0.001;
+    minFaceWeight   0.05;
+    minVolRatio     0.01;
+    minTriangleTwist -1;
+    nSmoothScale    4;
+    errorReduction  0.75;
+}
+
+writeFlags      ( scalarLevels layerSets layerFields );
+
+mergeTolerance  1e-06;

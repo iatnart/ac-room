@@ -1,0 +1,28 @@
+FoamFile
+{
+    version         2;
+    format          ascii;
+    class           dictionary;
+    object          surfaceFeaturesDict;
+}
+
+// Exported by SnappyHexMesh GUI add-on for Blender v1.0
+// Source file: E:\GoogleDrive\05-OpenFOAM\02.Project\01-SGF_LA\01. Blender-Files\230619-FillingRoomModel.blend
+// Export date: 2023-06-23 10:14:33.083908
+
+
+
+surfaces
+(
+    "inlet1.stl"
+    "inlet2.stl"
+    "Machine_heat.stl"
+    "Machine_wall.stl"
+    "outlet1.stl"
+    "outlet2.stl"
+    "Walls.stl"
+);
+
+includedAngle   150;
+
+
